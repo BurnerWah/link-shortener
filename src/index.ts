@@ -15,6 +15,8 @@ app.get('/:id', async (ctx) => {
   const result = await LINKS.get(id)
   if (result) {
     return ctx.redirect(result, 302)
+  } else {
+    return ctx.notFound()
   }
 })
 
