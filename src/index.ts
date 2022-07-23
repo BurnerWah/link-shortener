@@ -14,7 +14,7 @@ app.get('/:id', async (ctx) => {
   const { LINKS } = ctx.env
   const result = await LINKS.get(id)
   if (result) {
-    return ctx.redirect(result)
+    return ctx.redirect(result, 302)
   }
 })
 
