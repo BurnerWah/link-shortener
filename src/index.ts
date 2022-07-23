@@ -39,10 +39,10 @@ app.post(
         redirect: link.url,
       })
     } else {
-      let id = Base64URL.encode(randNum(10))
+      let id = Base64URL.encode(randNum(7))
       // Ensure that the id is unique
       while (await ctx.env.LINKS.get(id)) {
-        id = Base64URL.encode(randNum(10))
+        id = Base64URL.encode(randNum(7))
       }
       ctx.env.LINKS.put(id, link.url)
       return ctx.json({
