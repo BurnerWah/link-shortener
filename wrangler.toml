@@ -1,0 +1,13 @@
+name = "link-shortener"
+main = "src/index.ts"
+compatibility_date = "2022-07-23"
+node_compat = true
+
+[[kv_namespaces]]
+binding = "LINKS"
+id = "718208cdc88c44a1b24b384936f2a83e"
+preview_id = "718208cdc88c44a1b24b384936f2a83e"
+
+# [secrets]
+# USERNAME
+# PASSWORD

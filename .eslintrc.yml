@@ -1,0 +1,15 @@
+root: true
+
+extends:
+  - typescript
+  - prettier
+  - plugin:optimize-regex/recommended
+  - plugin:regexp/recommended
+  - plugin:sonarjs/recommended
+  - plugin:github/typescript
+
+plugins:
+  - eslint-plugin-optimize-regex
+  - regexp
+  - sonarjs
+  - github
