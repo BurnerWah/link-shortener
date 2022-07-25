@@ -1,10 +1,10 @@
-export interface Bindings {
+interface Bindings {
   USERNAME: string
   PASSWORD: string
   LINKS: KVNamespace
 }
 
-export interface Link {
+interface Link {
   name?: string
   url: string
 }
