@@ -1,4 +1,4 @@
-import { Context, Hono } from 'hono'
+import { Hono } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
 import { logger } from 'hono/logger'
 import { prettyJSON } from 'hono/pretty-json'
@@ -9,7 +9,10 @@ const app = new Hono<Bindings>()
 
 app.use(logger(), prettyJSON())
 
-async function redirect(ctx: Context<'id', Bindings>) {
+app.get('/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
+app.get('/.well-known/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
+
+app.get('/:id', async (ctx) => {
   const { id } = ctx.req.param()
   const { LINKS } = ctx.env
   const result = await LINKS.get(id)
@@ -18,13 +21,19 @@ async function redirect(ctx: Context<'id', Bindings>) {
   } else {
     return ctx.notFound()
   }
-}
+})
 
-app.get('/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
-app.get('/.well-known/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
-
-app.get('/:id', redirect)
-app.get('/go/:id', redirect) // Alternate link for usage with different bindings
+// Alternate link for usage with different bindings
+app.get('/go/:id2', async (ctx) => {
+  const { id2 } = ctx.req.param()
+  const { LINKS } = ctx.env
+  const result = await LINKS.get(id2)
+  if (result) {
+    return ctx.redirect(result, 302)
+  } else {
+    return ctx.notFound()
+  }
+})
 
 app.post(
   '/add',
