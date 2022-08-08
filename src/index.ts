@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+import { Context, Hono } from 'hono'
 import { basicAuth } from 'hono/basic-auth'
 import { logger } from 'hono/logger'
 import { prettyJSON } from 'hono/pretty-json'
@@ -12,28 +12,22 @@ app.use(logger(), prettyJSON())
 app.get('/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
 app.get('/.well-known/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
 
-app.get('/:id', async (ctx) => {
-  const { id } = ctx.req.param()
-  const { LINKS } = ctx.env
-  const result = await LINKS.get(id)
-  if (result) {
-    return ctx.redirect(result, 302)
-  } else {
-    return ctx.notFound()
+// Function factory to let us reuse the code for the entire redirector.
+function redirectGen<T extends string>(id_name: T) {
+  return async function (ctx: Context<T, Bindings>) {
+    const id = ctx.req.param(id_name)
+    const { LINKS } = ctx.env
+    const result = await LINKS.get(id)
+    if (result) {
+      return ctx.redirect(result, 302)
+    } else {
+      return ctx.notFound()
+    }
   }
-})
+}
 
-// Alternate link for usage with different bindings
-app.get('/go/:id2', async (ctx) => {
-  const { id2 } = ctx.req.param()
-  const { LINKS } = ctx.env
-  const result = await LINKS.get(id2)
-  if (result) {
-    return ctx.redirect(result, 302)
-  } else {
-    return ctx.notFound()
-  }
-})
+app.get('/:id', redirectGen('id'))
+app.get('/go/:id2', redirectGen('id2'))
 
 app.post(
   '/add',
