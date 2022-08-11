@@ -30,7 +30,7 @@ app.get('/:id', redirectGen('id'))
 app.get('/go/:id2', redirectGen('id2'))
 
 app.post(
-  '/add',
+  '/api/add',
   async (ctx, next) => {
     const auth = basicAuth({
       username: ctx.env.USERNAME,
