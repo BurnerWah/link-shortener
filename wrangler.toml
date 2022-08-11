@@ -2,6 +2,7 @@ name = "link-shortener"
 main = "src/index.ts"
 compatibility_date = "2022-07-23"
 node_compat = true
+workers_dev = false
 
 [[kv_namespaces]]
 binding = "LINKS"

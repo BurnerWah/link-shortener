@@ -1,5 +1,5 @@
 import { Context, Hono } from 'hono'
-import { basicAuth } from 'hono/basic-auth'
+// import { basicAuth } from 'hono/basic-auth'
 import { logger } from 'hono/logger'
 import { prettyJSON } from 'hono/pretty-json'
 import { ROBOTS_TXT } from './strings'
@@ -31,13 +31,13 @@ app.get('/go/:id2', redirectGen('id2'))
 
 app.post(
   '/api/add',
-  async (ctx, next) => {
-    const auth = basicAuth({
-      username: ctx.env.USERNAME,
-      password: ctx.env.PASSWORD,
-    })
-    await auth(ctx, next)
-  },
+  // async (ctx, next) => {
+  //   const auth = basicAuth({
+  //     username: ctx.env.USERNAME,
+  //     password: ctx.env.PASSWORD,
+  //   })
+  //   await auth(ctx, next)
+  // },
   async (ctx) => {
     const link = await ctx.req.json<Link>()
     if (link.name) {
