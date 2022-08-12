@@ -1,12 +1,13 @@
 import { Context, Hono } from 'hono'
 import { logger } from 'hono/logger'
+import { poweredBy } from 'hono/powered-by'
 import { prettyJSON } from 'hono/pretty-json'
 import api from './api'
 import { ROBOTS_TXT } from './strings'
 
 const app = new Hono<Bindings>()
 
-app.use(logger(), prettyJSON())
+app.use(logger(), prettyJSON(), poweredBy())
 
 app.get('/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
 app.get('/.well-known/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
