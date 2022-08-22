@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "hono": "^2.0.8"
+    "hono": "^2.0.9"
   }
 }
