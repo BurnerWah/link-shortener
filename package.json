@@ -4,7 +4,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^3.14.1",
     "@types/crypto-js": "^4.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.33.0",
     "concurrently": "^7.3.0",
     "eslint": "^8.22.0",
