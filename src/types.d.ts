@@ -4,6 +4,10 @@ interface Bindings {
   LINKS: KVNamespace
 }
 
+interface Env {
+  Bindings: Bindings
+}
+
 interface Link {
   name?: string
   url: string

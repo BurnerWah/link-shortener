@@ -3,7 +3,7 @@ import { Base64URL, randNum } from './util'
 
 // The internal API is expected to be protected by Cloudflare Access, so
 // no authentication is implemented.
-const api = new Hono<Bindings>()
+const api = new Hono<Env>()
 
 api.post('/add', async (ctx) => {
   const link = await ctx.req.json<Link>()

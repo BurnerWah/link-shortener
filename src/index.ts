@@ -5,7 +5,7 @@ import { prettyJSON } from 'hono/pretty-json'
 import api from './api'
 import { ROBOTS_TXT } from './strings'
 
-const app = new Hono<Bindings>()
+const app = new Hono<Env>()
 
 app.use(logger(), prettyJSON(), poweredBy())
 
@@ -14,7 +14,7 @@ app.get('/.well-known/robots.txt', (ctx) => ctx.text(ROBOTS_TXT))
 
 // Function factory to let us reuse the code for the entire redirector.
 function redirectGen<T extends string>(id_name: T) {
-  return async function (ctx: Context<T, Bindings>) {
+  return async function (ctx: Context<T, Env>) {
     const id = ctx.req.param(id_name)
     const { LINKS } = ctx.env
     const result = await LINKS.get(id)
