@@ -1,15 +1,46 @@
 root: true
 
 extends:
-  - typescript
+  - eslint:recommended
   - prettier
   - plugin:optimize-regex/recommended
   - plugin:regexp/recommended
   - plugin:sonarjs/recommended
-  - plugin:github/typescript
 
 plugins:
-  - eslint-plugin-optimize-regex
+  - optimize-regex
   - regexp
   - sonarjs
-  - github
+  - no-secrets
+
+rules:
+  no-secrets/no-secrets: error
+
+ignorePatterns:
+  - dist
+  - lint-staged.config.js
+
+overrides:
+  - files: ['*.ts', '*.tsx']
+    extends: [typescript, plugin:github/typescript]
+    plugins:
+      - github
+
+  - files: ['*.js', '*.cjs', '*.mjs']
+    excludedFiles: ['src/**/*', 'test/**/*']
+    env:
+      node: true
+      es2021: true
+    parserOptions:
+      ecmaVersion: latest
+
+  - files: ['*.js', '*.mjs']
+    parserOptions:
+      sourceType: module
+
+  - files: ['scripts/**/*']
+    env:
+      node: true
+      es2021: true
+    parserOptions:
+      ecmaVersion: latest

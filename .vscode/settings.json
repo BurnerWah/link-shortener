@@ -1,0 +1,10 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    ".husky/_": true,
+    ".eslintcache": true
+  },
+  "files.watcherExclude": {
+    "**/dist/**": true
+  }
+}

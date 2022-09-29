@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "test:ui",
+      "problemMatcher": [],
+      "label": "npm: Vitest UI",
+      "detail": "vitest --ui",
+      "group": {
+        "kind": "test"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "group": {
+        "kind": "test"
+      },
+      "problemMatcher": [],
+      "label": "npm: Vitest",
+      "detail": "vitest"
+    }
+  ]
+}

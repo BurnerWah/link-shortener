@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "zixuanchen.vitest-explorer",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ryanluker.vscode-coverage-gutters",
+    "tamasfe.even-better-toml",
+    "editorconfig.editorconfig",
+    "cschleiden.vscode-github-actions",
+    "redhat.vscode-yaml"
+  ]
+}
