@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
 
       - name: Runninv Vitest
-        run: npx vitest run --coverage
+        run: npm test -- --coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
