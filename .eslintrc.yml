@@ -22,9 +22,7 @@ ignorePatterns:
 
 overrides:
   - files: ['*.ts', '*.tsx']
-    extends: [typescript, plugin:github/typescript]
-    plugins:
-      - github
+    extends: [typescript]
 
   - files: ['*.js', '*.cjs', '*.mjs']
     excludedFiles: ['src/**/*', 'test/**/*']

@@ -16,6 +16,5 @@ export default defineConfig({
       provider: 'istanbul',
       reporter: ['text', 'html', 'clover', 'json', 'json-summary', 'lcov'],
     },
-    api: !process.env.CI,
   },
 })
