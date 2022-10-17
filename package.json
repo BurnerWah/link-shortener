@@ -11,7 +11,7 @@
     "@types/node": "^18.8.5",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
-    "@vitest/coverage-istanbul": "^0.24.1",
+    "@vitest/coverage-istanbul": "^0.24.3",
     "@vitest/ui": "^0.24.1",
     "concurrently": "^7.4.0",
     "eslint": "^8.24.0",
