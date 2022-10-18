@@ -7,6 +7,8 @@ export const Base64URL = {
 }
 
 export function randNum(length: number) {
-  const num = Math.floor(Math.random() * Math.pow(10, length))
+  const arr = new Uint32Array(1)
+  crypto.getRandomValues(arr)
+  const num = arr[0]
   return num.toString().padStart(length, '0')
 }
