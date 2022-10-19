@@ -7,7 +7,6 @@
   "files.watcherExclude": {
     "**/dist/**": true
   },
-  "sarif-viewer.connectToGithubCodeScanning": "on",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2,
