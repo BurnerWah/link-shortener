@@ -1,25 +1,25 @@
-name: 'Combine PRs'
+name: Combine PRs
 
 # Controls when the action will run - in this case triggered manually
 on:
   workflow_dispatch:
     inputs:
       branchPrefix:
-        description: 'Branch prefix to find combinable PRs based on'
+        description: Branch prefix to find combinable PRs based on
         required: true
-        default: 'dependabot'
+        default: dependabot
       mustBeGreen:
-        description: 'Only combine PRs that are green (status is success)'
+        description: Only combine PRs that are green (status is success)
         required: true
         default: 'true'
       combineBranchName:
-        description: 'Name of the branch to combine PRs into'
+        description: Name of the branch to combine PRs into
         required: true
-        default: 'combine-prs-branch'
+        default: combine-prs-branch
       ignoreLabel:
-        description: 'Exclude PRs with this label'
+        description: Exclude PRs with this label
         required: true
-        default: 'nocombine'
+        default: nocombine
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,7 +30,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         id: fetch-branch-names
         name: Fetch branch names
         with:
@@ -95,10 +95,12 @@ jobs:
             combined = branches.join(' ')
             console.log('Combined: ' + combined);
             return combined
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3.1.0
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       # Creates a branch with other PR branches merged together
       - name: Created combined branch
         env:
@@ -121,8 +123,9 @@ jobs:
           git checkout $COMBINE_BRANCH_NAME
           git pull origin $sourcebranches --no-edit
           git push origin $COMBINE_BRANCH_NAME
+
       # Creates a PR with the new combined branch
-      - uses: actions/github-script@v3
+      - uses: actions/github-script@v6
         name: Create Combined Pull Request
         env:
           PRS_STRING: ${{ steps.fetch-branch-names.outputs.prs-string }}
@@ -131,7 +134,7 @@ jobs:
           script: |
             const prString = process.env.PRS_STRING;
             const body = 'This PR was created by the Combine PRs action by combining the following PRs:\n' + prString;
-            await github.pulls.create({
+            await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: 'Combined PR',
