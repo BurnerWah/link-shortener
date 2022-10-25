@@ -36,7 +36,7 @@
   "scripts": {
     "start": "wrangler dev",
     "deploy": "wrangler publish",
-    "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}'",
+    "format": "prettier --cache --ignore-unknown --write .",
     "lint": "concurrently 'npm:lint:*'",
     "lint:prettier": "prettier --cache --check .",
     "lint:eslint": "eslint --cache --max-warnings=0 .",
