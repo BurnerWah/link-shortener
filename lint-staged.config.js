@@ -1,18 +1,9 @@
-#!/usr/bin/env ts-node
-
-import lintStaged from 'lint-staged'
 import mm from 'micromatch'
 
-type Commands = string | string[] | Promise<string | string[]>
-type Task = (filenames: string[]) => Commands
-
-function matchSome(
-  filenames: string[],
-  patterns: string[],
-  options: mm.Options = { dot: true, basename: true },
-): boolean {
-  return mm.some(filenames, patterns, options)
-}
+/**
+ * @typedef {{string|string[]|Promise<string|string[]>}} Commands
+ * @typedef {(filenames: string[]) => Commands} Task
+ */
 
 const commands = {
   prettier: 'prettier --cache --ignore-unknown --write .',
@@ -22,7 +13,22 @@ const commands = {
   tsc: 'tsc -p tsconfig.json --noEmit',
 }
 
-const tasks: Record<string, Task> = {
+/**
+ * @param {string[]} filenames
+ * @param {string[]} patterns
+ * @param {import('micromatch').Options} options
+ * @returns {boolean}
+ */
+function matchSome(
+  filenames,
+  patterns,
+  options = { dot: true, basename: true },
+) {
+  return mm.some(filenames, patterns, options)
+}
+
+/** @type {Record<string, Task>} */
+const tasks = {
   prettier: (files) => {
     if (matchSome(files, ['.prettierrc*', 'prettier.config.*'])) {
       return commands.prettier
@@ -42,7 +48,8 @@ const tasks: Record<string, Task> = {
   tsc: () => commands.tsc,
 }
 
-const config: Record<string, Task> = {
+/** @type {Record<string, Task>} */
+const config = {
   '{eslint.config.*,.eslintrc.*,*.{js,mjs,cjs,jsx,ts,tsx}}': tasks.eslint,
   '{vitest.config.ts,{src,test}/**/*}': tasks.vitest,
   '{tsconfig*.json,*.ts?(x)}': tasks.tsc,
@@ -50,13 +57,4 @@ const config: Record<string, Task> = {
   '*': tasks.prettier,
 }
 
-try {
-  const result: boolean = lintStaged({
-    config: config,
-  })
-  if (!result) {
-    console.error('Linting failed')
-  }
-} catch (error) {
-  console.error(error)
-}
+export default config
