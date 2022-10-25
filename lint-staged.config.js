@@ -1,4 +1,7 @@
 import mm from 'micromatch'
+import { constants as fsConstants } from 'node:fs'
+import { access } from 'node:fs/promises'
+import path from 'node:path'
 
 /**
  * @typedef {{string|string[]}} Commands
@@ -18,6 +21,15 @@ const commands = {
     '--tsconfig=tsconfig.json',
     'src/index.ts',
   ],
+  devskim: [
+    'devskim',
+    'analyze',
+    '--ignore-globs',
+    '**/.git/**,**/bin/**,**/node_modules/**,**/test/**',
+    '.',
+  ],
+  njsscan: ['njsscan'],
+  taplo: ['taplo', 'format'],
 }
 
 /**
@@ -44,6 +56,34 @@ function combine(...tasks) {
   }
 }
 
+/**
+ *
+ * @param {import('node:fs').PathLike} p
+ * @param {number} mode
+ * @returns {Promise<boolean>}
+ */
+async function tryAccess(p, mode = fsConstants.F_OK) {
+  try {
+    await access(p, mode)
+    return true
+  } catch {
+    return false
+  }
+}
+
+/**
+ * @param {string} command
+ * @returns {Promise<boolean>}
+ */
+async function hasCommand(command) {
+  const PATH = process.env.PATH.split(':')
+  const bins = PATH.map((dir) => path.join(dir, command))
+  const exists = await Promise.all(
+    bins.map((bin) => tryAccess(bin, fsConstants.X_OK)),
+  )
+  return exists.some(Boolean)
+}
+
 /** @type {Record<string, Task>} */
 const tasks = {
   prettier: async (files) => {
@@ -64,6 +104,27 @@ const tasks = {
   vitest: () => commands.vitest.join(' '),
   tsc: () => commands.tsc.join(' '),
   esbuild: () => commands.esbuild.join(' '),
+  devskim: async () => {
+    if (await hasCommand(commands.devskim[0])) {
+      return commands.devskim.join(' ')
+    } else {
+      return 'true'
+    }
+  },
+  njsscan: async (files) => {
+    if (await hasCommand(commands.njsscan[0])) {
+      return [...commands.njsscan, ...files].join(' ')
+    } else {
+      return 'true'
+    }
+  },
+  taplo: async (files) => {
+    if (await hasCommand(commands.taplo[0])) {
+      return [...commands.taplo, ...files].join(' ')
+    } else {
+      return 'true'
+    }
+  },
 }
 
 const filetypes = {
@@ -72,6 +133,7 @@ const filetypes = {
   json: ['json', 'jsonc'],
   md: ['md', 'mdx'],
   yaml: ['yaml', 'yml'],
+  toml: ['toml'],
 }
 
 /**
@@ -96,6 +158,9 @@ const config = {
   'src/**/*': tasks.esbuild,
   'tsconfig.json': tasks.tsc,
   'wrangler.toml': combine(tasks.esbuild, tasks.wrangler),
+  '*!(.spec.ts)': tasks.devskim,
+  '*.toml': tasks.taplo,
+  [`src/**/${fts('js', 'ts')}`]: tasks.njsscan,
   [glob('vitest.config.ts', '{src,test}/**/*')]: tasks.vitest,
   [glob('eslint.config.*', '.eslintrc.*', fts('js', 'ts'))]: tasks.eslint,
   '*': tasks.prettier,
