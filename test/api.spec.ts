@@ -15,8 +15,6 @@ test('Add invalid URL', async () => {
   })
   const res = await app.fetch(req, env)
   expect(res.status).toBe(400)
-  const text = await res.text()
-  expect(text).toMatch(/^Invalid Value: the JSON body "url" is invalid - .+/)
 })
 
 test('Add without URL', async () => {
@@ -28,8 +26,6 @@ test('Add without URL', async () => {
   })
   const res = await app.fetch(req, env)
   expect(res.status).toBe(400)
-  const text = await res.text()
-  expect(text).toBe('Invalid Value: the JSON body "url" is invalid - undefined')
 })
 
 test('Add link with name', async () => {
