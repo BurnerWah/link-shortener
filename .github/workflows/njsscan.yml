@@ -10,10 +10,12 @@ name: njsscan sarif
 
 on:
   push:
-    branches: ['main']
+    branches: [main]
+    # Only run when the actual source code has been changed
+    paths: [src/**]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: ['main']
+    branches: [main]
   schedule:
     - cron: '35 5 * * 2'
 
