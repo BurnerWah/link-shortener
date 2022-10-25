@@ -3,6 +3,20 @@ name: ESLint
 on:
   push:
     branches: [main]
+    # ESLint has a lot of files that it cares about. In particular though,
+    # configuration files that Prettier might use will probably be used by
+    # ESLint.
+    paths:
+      - .github/workflows/eslint.yml
+      - package*.json
+      - tsconfig*.json
+      - '**/.eslint*'
+      - '**/eslint.config.*'
+      - '**/.prettier*' # Prettier config files
+      - '**/prettier.config.*' # JS prettier config files
+      - '**/*.editorconfig' # Used by prettier
+      - '**/*.[cm]?jsx?'
+      - '**/*.tsx?'
   pull_request:
     branches: [main]
 

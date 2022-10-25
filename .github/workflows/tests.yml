@@ -3,6 +3,14 @@ name: Tests
 on:
   push:
     branches: [main]
+    paths:
+      - .github/workflows/tests.yml
+      - package*.json
+      - src/**
+      - test/**
+      - tsconfig*.json
+      - vitest.config.ts
+      - wrangler.toml
   pull_request:
     branches: [main]
 

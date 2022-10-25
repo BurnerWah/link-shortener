@@ -5,6 +5,7 @@ on:
     branches: [main]
     # Only run when we update files that wrangler actually uses
     paths:
+      - .github/workflows/wrangler.yml
       - package*.json
       - src/**
       - tsconfig*.json
