@@ -39,13 +39,13 @@ jobs:
         github.event_name == 'pull_request' &&
         github.actor == 'dependabot[bot]' &&
         (
-          contains('dependabot/npm_and_yarn/typescript-eslint', github.head_ref) ||
-          contains('dependabot/npm_and_yarn/vitest/ui',         github.head_ref) ||
-          contains('dependabot/npm_and_yarn/husky',             github.head_ref) ||
-          contains('dependabot/npm_and_yarn/concurrently',      github.head_ref) ||
-          contains('dependabot/npm_and_yarn/eslint',            github.head_ref) ||
-          contains('dependabot/npm_and_yarn/lint-staged',       github.head_ref) ||
-          contains('dependabot/npm_and_yarn/is-ci',             github.head_ref)
+          contains(github.head_ref, 'dependabot/npm_and_yarn/typescript-eslint') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/vitest/ui') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/husky') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/concurrently') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/eslint') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/lint-staged') ||
+          contains(github.head_ref, 'dependabot/npm_and_yarn/is-ci')
         )
       )
     steps:
