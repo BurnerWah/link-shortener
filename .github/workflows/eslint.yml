@@ -48,14 +48,16 @@ jobs:
     # Specifically, stuff that shouldn't affect ESLint outputs.
     # Ex. vitest, husky
     if: |
-      ! (
-        github.actor == 'dependabot[bot]' && (
-          startsWith('dependabot/npm_and_yarn/vitest',        github.ref) || 
-          startsWith('dependabot/npm_and_yarn/husky',         github.ref) ||
-          startsWith('dependabot/npm_and_yarn/concurrently',  github.ref) ||
-          startsWith('dependabot/npm_and_yarn/is-ci',         github.ref)
+      ${{
+        ! (
+          github.actor == 'dependabot[bot]' && (
+            startsWith('dependabot/npm_and_yarn/vitest',        github.ref) || 
+            startsWith('dependabot/npm_and_yarn/husky',         github.ref) ||
+            startsWith('dependabot/npm_and_yarn/concurrently',  github.ref) ||
+            startsWith('dependabot/npm_and_yarn/is-ci',         github.ref)
+          )
         )
-      )
+      }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
