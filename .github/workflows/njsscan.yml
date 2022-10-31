@@ -14,8 +14,15 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [main]
+    # Paths are the same as we use on push
+    # This indirectly excludes most dependabot PRs.
+    paths:
+      - .github/workflows/njsscan.yml
+      - src/**
+      - '**/.njsscan'
   schedule:
     - cron: '35 5 * * 2' # 05:35 on Tuesdays
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,8 +35,6 @@ jobs:
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
     name: njsscan code scanning
-    # Don't run for dependabot PRs
-    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3

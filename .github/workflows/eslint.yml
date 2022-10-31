@@ -17,8 +17,25 @@ on:
       - '**/*.editorconfig' # Used by prettier
       - '**/*.[cm]?jsx?'
       - '**/*.tsx?'
+      - src/**
+      - test/**
   pull_request:
     branches: [main]
+    # Same as on push
+    paths:
+      - .github/workflows/eslint.yml
+      - package*.json
+      - tsconfig*.json
+      - '**/.eslint*'
+      - '**/eslint.config.*'
+      - '**/.prettier*'
+      - '**/prettier.config.*'
+      - '**/*.editorconfig'
+      - '**/*.[cm]?jsx?'
+      - '**/*.tsx?'
+      - src/**
+      - test/**
+  workflow_dispatch:
 
 jobs:
   eslint:
@@ -27,6 +44,18 @@ jobs:
     permissions:
       contents: read
       security-events: write
+    # Don't run for some dependabot PRs.
+    # Specifically, stuff that shouldn't affect ESLint outputs.
+    # Ex. vitest, husky
+    if: |
+      ! (
+        github.actor == 'dependabot[bot]' && (
+          startsWith('dependabot/npm_and_yarn/vitest',        github.ref) || 
+          startsWith('dependabot/npm_and_yarn/husky',         github.ref) ||
+          startsWith('dependabot/npm_and_yarn/concurrently',  github.ref) ||
+          startsWith('dependabot/npm_and_yarn/is-ci',         github.ref)
+        )
+      )
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

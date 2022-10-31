@@ -13,6 +13,16 @@ on:
       - wrangler.toml
   pull_request:
     branches: [main]
+    # Same paths that are used on push.
+    paths:
+      - .github/workflows/tests.yml
+      - package*.json
+      - src/**
+      - test/**
+      - tsconfig*.json
+      - vitest.config.ts
+      - wrangler.toml
+  workflow_dispatch:
 
 jobs:
   vitest:
@@ -21,6 +31,21 @@ jobs:
     permissions:
       contents: read
       security-events: write
+    # Don't run for some dependabot PRs.
+    # Particularly, things which should not affect test outputs.
+    # Ex. @vitest/ui, ESLint-related stuff, husky.
+    if: |
+      ! (
+        github.actor == 'dependabot[bot]' && (
+          startsWith('dependabot/npm_and_yarn/typescript-eslint', github.ref) || 
+          startsWith('dependabot/npm_and_yarn/vitest/ui',         github.ref) ||
+          startsWith('dependabot/npm_and_yarn/husky',             github.ref) ||
+          startsWith('dependabot/npm_and_yarn/concurrently',      github.ref) ||
+          startsWith('dependabot/npm_and_yarn/eslint',            github.ref) ||
+          startsWith('dependabot/npm_and_yarn/lint-staged',       github.ref) ||
+          startsWith('dependabot/npm_and_yarn/is-ci',             github.ref)
+        )
+      )
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

@@ -10,6 +10,7 @@ on:
       - src/**
       - tsconfig*.json
       - wrangler.toml
+  workflow_dispatch:
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:

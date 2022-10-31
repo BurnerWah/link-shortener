@@ -3,19 +3,51 @@ name: DevSkim
 on:
   push:
     branches: [main]
-    # DevSkim can run on a lot of file types, so it's easier to just let it run
-    # no matter what instead during specific circumstances.
+    # If any of these files are the only thing that was changed, it's fairly
+    # easy to assume that running DevSkim is unncessary.
+    # Note that I'm actively avoiding just selecting any Prettier or ESLint
+    # config files, since both allow for config files written in JS.
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.editorconfig'
+      - '**/.*ignore'
+      - '**/*.prettierrc.ya?ml'
+      - '**/*.prettierrc.json5?'
+      - '**/*.prettierrc.toml'
+      - '**/*.eslintrc.ya?ml'
+      - '**/*.eslintrc.json'
+      - .deepsource.toml
+      - .github/dependabot.yml
+      - .github/restyled.yml
+      - .vscode/**
+      - package*.json # Devskim doesn't seem to have any rules that care about this
+      - test/** # Willingly ignored since we ignore this in the arguments anyways
   pull_request:
     branches: [main]
+    # Same as on push
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.editorconfig'
+      - '**/.*ignore'
+      - '**/*.prettierrc.ya?ml'
+      - '**/*.prettierrc.json5?'
+      - '**/*.prettierrc.toml'
+      - '**/*.eslintrc.ya?ml'
+      - '**/*.eslintrc.json'
+      - .deepsource.toml
+      - .github/dependabot.yml
+      - .github/restyled.yml
+      - .vscode/**
+      - package*.json
+      - test/**
   schedule:
     - cron: '43 8 * * 4' # 08:43 on Thursdays
+  workflow_dispatch:
 
 jobs:
   lint:
     name: DevSkim
     runs-on: ubuntu-20.04
-    # Don't run for dependabot PRs
-    if: ${{ github.actor != 'dependabot[bot]' }}
     permissions:
       actions: read
       contents: read
