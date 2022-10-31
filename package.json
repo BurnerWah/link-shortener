@@ -9,7 +9,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "@vitest/coverage-istanbul": "^0.24.4",
-    "@vitest/ui": "^0.24.1",
+    "@vitest/ui": "^0.24.4",
     "concurrently": "^7.5.0",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
