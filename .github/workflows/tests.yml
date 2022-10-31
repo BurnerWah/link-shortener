@@ -37,16 +37,15 @@ jobs:
     if: |
       ! (
         github.event_name == 'pull_request' &&
-        github.actor == 'dependabot[bot]' &&
-        contains(fromJSON('[
-          "dependabot/npm_and_yarn/typescript-eslint",
-          "dependabot/npm_and_yarn/vitest/ui",
-          "dependabot/npm_and_yarn/husky",
-          "dependabot/npm_and_yarn/concurrently",
-          "dependabot/npm_and_yarn/eslint",
-          "dependabot/npm_and_yarn/lint-staged",
-          "dependabot/npm_and_yarn/is-ci"
-        ]'), github.head_ref)
+        github.actor == 'dependabot[bot]' && (
+          startsWith('dependabot/npm_and_yarn/typescript-eslint', github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/vitest/ui',         github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/husky',             github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/concurrently',      github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/eslint',            github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/lint-staged',       github.head_ref) ||
+          startsWith('dependabot/npm_and_yarn/is-ci',             github.head_ref)
+        )
       )
     steps:
       - name: Checkout code
