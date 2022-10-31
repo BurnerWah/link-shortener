@@ -51,7 +51,7 @@ jobs:
       !(
         github.event_name == 'pull_request' &&
         github.actor == 'dependabot[bot]' &&
-        !(
+        (
           contains('dependabot/npm_and_yarn/vitest',        github.head_ref) ||
           contains('dependabot/npm_and_yarn/husky',         github.head_ref) ||
           contains('dependabot/npm_and_yarn/concurrently',  github.head_ref) ||
