@@ -11,7 +11,7 @@
     "@vitest/coverage-istanbul": "^0.24.4",
     "@vitest/ui": "^0.24.4",
     "concurrently": "^7.5.0",
-    "eslint": "^8.26.0",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-typescript": "^3.0.0",
     "eslint-plugin-no-secrets": "^0.8.9",
