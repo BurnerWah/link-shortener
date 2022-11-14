@@ -7,7 +7,7 @@
     "@types/micromatch": "^4.0.2",
     "@types/node": "^18.11.8",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@typescript-eslint/parser": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.1",
     "@vitest/coverage-istanbul": "^0.24.4",
     "@vitest/ui": "^0.24.4",
     "concurrently": "^7.5.0",
