@@ -2,7 +2,7 @@
   "name": "link-shortener",
   "version": "0.0.0",
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.18.0",
+    "@cloudflare/workers-types": "^4.20221111.1",
     "@types/crypto-js": "^4.1.1",
     "@types/micromatch": "^4.0.2",
     "@types/node": "^18.11.9",
