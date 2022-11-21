@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "hono": "^2.5.1"
+    "hono": "^2.5.4"
   },
   "type": "module"
 }
