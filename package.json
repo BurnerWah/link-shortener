@@ -1,6 +1,27 @@
 {
   "name": "link-shortener",
   "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish",
+    "format": "prettier --cache --ignore-unknown --write .",
+    "lint": "concurrently 'npm:lint:*'",
+    "lint:prettier": "prettier --cache --check .",
+    "lint:eslint": "eslint --cache --max-warnings=0 .",
+    "build": "wrangler publish --dry-run --outdir dist",
+    "pretest": "wrangler publish --dry-run --outdir dist 2>/dev/null",
+    "test": "vitest",
+    "test:run": "npm run --silent test -- run",
+    "test:ui": "npm run --silent test -- --ui",
+    "coverage": "npm run --silent test -- run --coverage",
+    "prepare": "is-ci || husky install"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "hono": "^2.5.1"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.18.0",
     "@types/crypto-js": "^4.1.1",
@@ -28,26 +49,5 @@
     "vitest": "^0.25.2",
     "vitest-environment-miniflare": "^2.11.0",
     "wrangler": "^2.3.2"
-  },
-  "private": true,
-  "scripts": {
-    "start": "wrangler dev",
-    "deploy": "wrangler publish",
-    "format": "prettier --cache --ignore-unknown --write .",
-    "lint": "concurrently 'npm:lint:*'",
-    "lint:prettier": "prettier --cache --check .",
-    "lint:eslint": "eslint --cache --max-warnings=0 .",
-    "build": "wrangler publish --dry-run --outdir dist",
-    "pretest": "wrangler publish --dry-run --outdir dist 2>/dev/null",
-    "test": "vitest",
-    "test:run": "npm run --silent test -- run",
-    "test:ui": "npm run --silent test -- --ui",
-    "coverage": "npm run --silent test -- run --coverage",
-    "prepare": "is-ci || husky install"
-  },
-  "dependencies": {
-    "crypto-js": "^4.1.1",
-    "hono": "^2.5.1"
-  },
-  "type": "module"
+  }
 }
