@@ -20,7 +20,7 @@
     "eslint-plugin-sonarjs": "^0.16.0",
     "husky": "^8.0.2",
     "is-ci": "^3.0.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^13.0.4",
     "micromatch": "^4.0.5",
     "prettier": "^2.7.1",
     "robots-parser": "^3.0.0",
