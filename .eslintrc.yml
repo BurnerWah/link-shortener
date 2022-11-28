@@ -21,7 +21,11 @@ ignorePatterns:
 
 overrides:
   - files: ['*.ts', '*.tsx']
-    extends: [typescript]
+    extends:
+      - plugin:@typescript-eslint/eslint-recommended
+      - plugin:@typescript-eslint/recommended
+    plugins:
+      - '@typescript-eslint'
 
   - files: ['*.js', '*.cjs', '*.mjs']
     excludedFiles: ['src/**/*', 'test/**/*']
