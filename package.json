@@ -29,7 +29,7 @@
     "@types/node": "^18.11.9",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
-    "@vitest/coverage-istanbul": "^0.25.3",
+    "@vitest/coverage-istanbul": "^0.25.5",
     "@vitest/ui": "^0.25.3",
     "concurrently": "^7.6.0",
     "eslint": "^8.28.0",
