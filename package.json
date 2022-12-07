@@ -32,7 +32,7 @@
     "@vitest/coverage-istanbul": "^0.25.3",
     "@vitest/ui": "^0.25.3",
     "concurrently": "^7.6.0",
-    "eslint": "^8.28.0",
+    "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-no-secrets": "^0.8.9",
     "eslint-plugin-optimize-regex": "^1.2.1",
