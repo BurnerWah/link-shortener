@@ -16,7 +16,8 @@
     "test:run": "npm run --silent test -- run",
     "test:ui": "npm run --silent test -- --ui",
     "coverage": "npm run --silent test -- run --coverage",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || node node_modules/.bin/husky install",
+    "husky": "node node_modules/.bin/husky"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/crypto-js": "^4.1.1",
     "@types/micromatch": "^4.0.2",
     "@types/node": "^18.11.11",
@@ -48,5 +50,6 @@
     "vitest": "^0.25.5",
     "vitest-environment-miniflare": "^2.11.0",
     "wrangler": "^2.6.1"
-  }
+  },
+  "packageManager": "pnpm@7.18.1"
 }

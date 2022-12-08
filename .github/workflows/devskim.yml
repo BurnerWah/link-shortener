@@ -21,6 +21,7 @@ on:
       - .github/restyled.yml
       - .vscode/**
       - package*.json # Devskim doesn't seem to have any rules that care about this
+      - pnpm-lock.yaml
       - test/** # Willingly ignored since we ignore this in the arguments anyways
   pull_request:
     branches: [main]
@@ -39,6 +40,7 @@ on:
       - .github/restyled.yml
       - .vscode/**
       - package*.json
+      - pnpm-lock.yaml
       - test/**
   schedule:
     - cron: '43 8 * * 4' # 08:43 on Thursdays
