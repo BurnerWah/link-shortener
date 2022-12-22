@@ -21,20 +21,20 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "hono": "^2.5.9"
+    "hono": "^2.6.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20221111.1",
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/crypto-js": "^4.1.1",
     "@types/micromatch": "^4.0.2",
-    "@types/node": "^18.11.11",
-    "@typescript-eslint/eslint-plugin": "^5.45.1",
-    "@typescript-eslint/parser": "^5.45.1",
-    "@vitest/coverage-istanbul": "^0.25.5",
-    "@vitest/ui": "^0.25.5",
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "@vitest/coverage-istanbul": "^0.26.2",
+    "@vitest/ui": "^0.26.2",
     "concurrently": "^7.6.0",
-    "eslint": "^8.29.0",
+    "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-no-secrets": "^0.8.9",
     "eslint-plugin-optimize-regex": "^1.2.1",
@@ -47,10 +47,10 @@
     "prettier": "^2.8.1",
     "robots-parser": "^3.0.0",
     "typescript": "^4.9.4",
-    "vite": "^3.2.5",
-    "vitest": "^0.25.5",
+    "vite": "^4.0.3",
+    "vitest": "^0.26.2",
     "vitest-environment-miniflare": "^2.11.0",
-    "wrangler": "^2.6.1"
+    "wrangler": "^2.6.2"
   },
   "packageManager": "pnpm@7.19.0"
 }
