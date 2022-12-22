@@ -24,6 +24,7 @@
     "hono": "^2.6.2"
   },
   "devDependencies": {
+    "@burnerwah/tsconfig-cloudflare": "^1.0.2",
     "@cloudflare/workers-types": "^4.20221111.1",
     "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "@types/crypto-js": "^4.1.1",

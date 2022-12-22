@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@burnerwah/tsconfig-cloudflare': ^1.0.2
   '@cloudflare/workers-types': ^4.20221111.1
   '@microsoft/eslint-formatter-sarif': ^3.0.0
   '@types/crypto-js': ^4.1.1
@@ -36,6 +37,7 @@ dependencies:
   hono: 2.6.2
 
 devDependencies:
+  '@burnerwah/tsconfig-cloudflare': 1.0.2
   '@cloudflare/workers-types': 4.20221111.1
   '@microsoft/eslint-formatter-sarif': 3.0.0
   '@types/crypto-js': 4.1.1
@@ -265,6 +267,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@burnerwah/tsconfig-cloudflare/1.0.2:
+    resolution: {integrity: sha512-XK7GSx5p71a6uHCVyZkPjZCP1VGzQbDPUQiNlojB4bMIh0LSrjcZBEalHiGN5B5xEEEE5pAKKz4Rzzba41mO3g==}
     dev: true
 
   /@cloudflare/kv-asset-handler/0.2.0:
