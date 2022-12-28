@@ -53,5 +53,5 @@
     "vitest-environment-miniflare": "^2.11.0",
     "wrangler": "^2.6.2"
   },
-  "packageManager": "pnpm@7.19.0"
+  "packageManager": "pnpm@7.21.0"
 }
