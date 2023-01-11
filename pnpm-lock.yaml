@@ -18,7 +18,7 @@ specifiers:
   eslint-plugin-no-secrets: ^0.8.9
   eslint-plugin-optimize-regex: ^1.2.1
   eslint-plugin-regexp: ^1.11.0
-  eslint-plugin-sonarjs: ^0.17.0
+  eslint-plugin-sonarjs: ^0.18.0
   hono: ^2.6.2
   husky: ^8.0.2
   is-ci: ^3.0.1
@@ -53,7 +53,7 @@ devDependencies:
   eslint-plugin-no-secrets: 0.8.9_eslint@8.30.0
   eslint-plugin-optimize-regex: 1.2.1
   eslint-plugin-regexp: 1.11.0_eslint@8.30.0
-  eslint-plugin-sonarjs: 0.17.0_eslint@8.30.0
+  eslint-plugin-sonarjs: 0.18.0_eslint@8.30.0
   husky: 8.0.2
   is-ci: 3.0.1
   lint-staged: 13.1.0
@@ -1853,8 +1853,8 @@ packages:
       scslre: 0.1.6
     dev: true
 
-  /eslint-plugin-sonarjs/0.17.0_eslint@8.30.0:
-    resolution: {integrity: sha512-jtGtxI49UbJJeJj7CVRLI3+LLH+y+hkR3GOOwM7vBbci9DEFIRGCWvEd2BJScrzltZ6D6iubukTAfc9cyG7sdw==}
+  /eslint-plugin-sonarjs/0.18.0_eslint@8.30.0:
+    resolution: {integrity: sha512-DJ3osLnt6KFdT5e9ZuIDOjT5A6wUGSLeiJJT03lPgpdD+7CVWlYAw9Goe3bt7SmbFO3Xh89NOCZAuB9XA7bAUQ==}
     engines: {node: '>=14'}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
