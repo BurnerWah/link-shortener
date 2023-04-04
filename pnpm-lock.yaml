@@ -5,8 +5,8 @@ dependencies:
     specifier: ^4.1.1
     version: 4.1.1
   hono:
-    specifier: ^2.6.2
-    version: 2.6.2
+    specifier: ^3.0.0
+    version: 3.0.0
 
 devDependencies:
   '@burnerwah/tsconfig-cloudflare':
@@ -2243,8 +2243,8 @@ packages:
       function-bind: 1.1.1
     dev: true
 
-  /hono@2.6.2:
-    resolution: {integrity: sha512-Y4Uv6dPPx6u7TNoWN245tLw8jycBf97w0FJGJoEMdgdBqQEv1dqIvg5IfDhiYMkimSIt4SXxmMgiyPf2wzwFWQ==}
+  /hono@3.0.0:
+    resolution: {integrity: sha512-OBWEvcRydCOLdOiazqOmKy8PXciR8uIyUM9HpmXot7UmwNBGOdEJvTrVRIgjV603w+go6cTXBOvFiQClSABT6Q==}
     engines: {node: '>=16.0.0'}
     dev: false
 
