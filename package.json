@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "hono": "^2.6.2"
+    "hono": "^4.0.0"
   },
   "devDependencies": {
     "@burnerwah/tsconfig-cloudflare": "^1.0.2",
